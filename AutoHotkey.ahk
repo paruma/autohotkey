@@ -1,52 +1,44 @@
+;カタカナひらがなキーを無変換キーに割り当て
+vkF2sc070::
+send, {vk1Dsc07B}
+return
+
 ;Home, End関連
-!Up::
-	if GetKeyState("z", "P")
-		send, !{Up}
-	else
-		send, ^{Home}
+
+;無変換再定義(これがないと無変換が機能しない)
+vk1Dsc07B::
+send, {vk1Dsc07B}
 return
 
-!+Up::
-	if GetKeyState("z", "P")
-	
-send, ^+{Home}
+vk1Dsc07B & Up::
+if GetKeyState("Shift", "P") || GetKeyState("Alt", "P")
+    send, ^+{Home}
+else
+	send, ^{Home}
 return
 
-!Down::
-	if GetKeyState("z", "P")
-		send, !{Down}
-	else
-		send, ^{End}
+vk1Dsc07B & Down::
+if GetKeyState("Shift", "P") || GetKeyState("Alt", "P")
+    send, ^+{End}
+else
+	send, ^{End}
 return
 
-!+Down::
-send, ^+{End}
+vk1Dsc07B & Left::
+if GetKeyState("Shift", "P") || GetKeyState("Alt", "P")
+    send, +{Home}
+else
+	send, {Home}
 return
 
-!Left::
-	if GetKeyState("z", "P")
-		send, !{Left}
-	else
-		send, {Home}
+vk1Dsc07B & Right::
+if GetKeyState("Shift", "P") || GetKeyState("Alt", "P")
+    send, +{End}
+else
+	send, {End}
 return
 
-!+Left::
-send, +{Home}
-return
-
-!Right::
-	if GetKeyState("z", "P")
-		send, !{Right}
-	else
-		send, {End}
-return
-
-!+Right::
-send, +{End}
-return
-
-
-;タップゾーン(コーナータップ。左上、右上)
+;タップゾーン(コーナータップ。左上、右上)(現在左上、右上のタップゾーンは機能していない。)
 Media_Prev::
 	send, #^{Left}
 return
@@ -55,6 +47,7 @@ Media_Next::
 	send, #^{Right}
 return
 
-;Insert無効化
+;InsertをDeleteに割り当て(Insert事故防止)
 Insert::
+send, {Delete}
 return
