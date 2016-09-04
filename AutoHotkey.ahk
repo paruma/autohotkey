@@ -1,6 +1,6 @@
-;カタカナひらがなキーを無変換キーに割り当て
+;カタカナひらがなキーを変換キーに割り当て
 vkF2sc070::
-send, {vk1Dsc07B}
+send, {vk1Csc079}
 return
 
 ;Home, End関連
