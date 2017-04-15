@@ -53,6 +53,10 @@ Insert::
 send, {Delete}
 return
 
+;テンキーのInsertを削除
+NumpadIns::
+return
+
 ;http://sato001.com/high-speed-input-keyboard を参考にした。
 
 ;無変換+IJKL: 矢印
