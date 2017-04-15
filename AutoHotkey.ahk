@@ -1,11 +1,8 @@
+; +Shift, ^Ctrl, !Alt, #Win
+
 ;カタカナひらがなキーを変換キーに割り当て
 vkF2sc070::
 send, {vk1Csc079}
-return
-
-;CapsLock→BackSpace
-vkF0sc03A::
-send, {BackSpace}
 return
 
 ;Home, End関連
