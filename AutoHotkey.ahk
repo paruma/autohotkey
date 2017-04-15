@@ -3,6 +3,11 @@ vkF2sc070::
 send, {vk1Csc079}
 return
 
+;CapsLock→BackSpace
+vkF0sc03A::
+send, {BackSpace}
+return
+
 ;Home, End関連
 
 ;無変換再定義(これがないと無変換が機能しない)
