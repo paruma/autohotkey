@@ -1,4 +1,6 @@
+; cheet sheet
 ; +Shift, ^Ctrl, !Alt, #Win
+; キーリスト: http://ahkwiki.net/KeyList
 
 ;カタカナひらがなキーを変換キーに割り当て
 vkF2sc070::
@@ -11,6 +13,7 @@ return
 vk1Dsc07B::
 send, {vk1Dsc07B}
 return
+
 vk1Dsc07B & Up::
 if GetKeyState("Shift", "P") || GetKeyState("Alt", "P")
     send, ^+{Home}
@@ -135,4 +138,94 @@ return
 ;無変換 + Y : Ctrl + Y
 vk1Dsc07B & Y::
 send ^{y}
+return
+
+
+;[変換 + 何か]は主にgoogle chrome向け
+;変換再定義(これがないと変換が機能しない)
+vk1Csc079::
+send, {vk1Csc079}
+return
+
+;変換 + A: Ctrl + Shift + Tab
+vk1Csc079 & A::
+send +^{Tab}
+return
+
+;変換 + D: Ctrl + Tab
+vk1Csc079 & D::
+send ^{Tab}
+return
+
+;変換 + W: Ctrl + W
+vk1Csc079 & W::
+send ^{w}
+return
+
+;変換 + T: Ctrl + T
+vk1Csc079 & T::
+send ^{t}
+return
+
+;変換 + E: Ctrl + E
+vk1Csc079 & E::
+send ^{e}
+return
+
+;変換 + L: [Ctrl + L]→[Ctrl + C]
+vk1Csc079 & L::
+send ^{l}
+return
+
+;http://did2memo.net/2014/03/19/autohotkey-insert-text/ より
+; 文字をまとめて高速入力する関数
+InsertText(Content) {
+    cb_bk = %ClipboardAll%
+    Clipboard = %Content%
+    Send, ^v
+    Sleep, 100
+    Clipboard = %cb_bk%
+}
+
+;変換 + C: Webのタイトル取得
+vk1Csc079 & C::
+send ^{l}
+
+;chromeの仕様でclipboard経由でjavascript:とはかけない。
+InsertText("javascript")
+;"→""に変換(エスケープ文字 http://ahkwiki.net/-EscapeChar より)
+InsertText(": (function(text){ var ta = document.createElement(""textarea""); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand(""copy""); ta.parentElement.removeChild(ta); })(document.title)")
+send {Enter}
+return
+
+;変換 +  数字: Ctrl + 数字
+vk1Csc079 & 0::
+send ^{0}
+return
+vk1Csc079 & 1::
+send ^{1}
+return
+vk1Csc079 & 2::
+send ^{2}
+return
+vk1Csc079 & 3::
+send ^{3}
+return
+vk1Csc079 & 4::
+send ^{4}
+return
+vk1Csc079 & 5::
+send ^{5}
+return
+vk1Csc079 & 6::
+send ^{6}
+return
+vk1Csc079 & 7::
+send ^{7}
+return
+vk1Csc079 & 8::
+send ^{8}
+return
+vk1Csc079 & 9::
+send ^{9}
 return
