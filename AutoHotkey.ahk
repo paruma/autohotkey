@@ -167,6 +167,16 @@ vk1Csc079 & E::
 send ^{e}
 return
 
+;変換 + S: Ctrl + S
+vk1Csc079 & S::
+send ^{s}
+return
+
+;変換 + T: Ctrl + T
+vk1Csc079 & T::
+send ^{t}
+return
+
 ;変換 + L: [Ctrl + L]→[Ctrl + C]
 vk1Csc079 & L::
 send ^{l}
