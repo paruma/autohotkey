@@ -162,11 +162,6 @@ vk1Csc079 & W::
 send ^{w}
 return
 
-;変換 + T: Ctrl + T
-vk1Csc079 & T::
-send ^{t}
-return
-
 ;変換 + E: Ctrl + E
 vk1Csc079 & E::
 send ^{e}
