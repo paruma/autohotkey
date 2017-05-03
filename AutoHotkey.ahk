@@ -2,10 +2,6 @@
 ; +Shift, ^Ctrl, !Alt, #Win
 ; キーリスト: http://ahkwiki.net/KeyList
 
-;カタカナひらがなキーを変換キーに割り当て
-vkF2sc070::
-send, {vk1Csc079}
-return
 
 ;Home, End関連
 
@@ -233,4 +229,10 @@ send ^{8}
 return
 vk1Csc079 & 9::
 send ^{9}
+return
+
+; カタカナひらがなキーを変換に割り当て(ミス対処)
+;http://did2.blog64.fc2.com/blog-entry-374.html
+; このPCだと、vkF2sc070(キーリスト記載)ではなく、vkF0sc070がカタカナひらがなキーになっている。
+vkF0sc070::vk1Csc079
 return
