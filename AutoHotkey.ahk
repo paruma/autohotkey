@@ -136,6 +136,16 @@ vk1Dsc07B & Y::
 send ^{y}
 return
 
+;無変換 + H : Home
+vk1Dsc07B & H::
+send {Home}
+return
+
+;無変換 + : : End
+vk1Dsc07B & vkBAsc028 ::
+send {End}
+return
+
 
 ;[変換 + 何か]は主にgoogle chrome向け
 ;変換再定義(これがないと変換が機能しない)
@@ -171,11 +181,6 @@ return
 ;変換 + T: Ctrl + T
 vk1Csc079 & T::
 send ^{t}
-return
-
-;変換 + L: [Ctrl + L]→[Ctrl + C]
-vk1Csc079 & L::
-send ^{l}
 return
 
 ;http://did2memo.net/2014/03/19/autohotkey-insert-text/ より
@@ -231,8 +236,27 @@ vk1Csc079 & 9::
 send ^{9}
 return
 
+;変換 + IJL: 仮想デスクトップの移動
+vk1Csc079 & I::
+send #{Tab}
+return
+
+vk1Csc079 & J::
+send #^{Left}
+return
+
+vk1Csc079 & L::
+send #^{Right}
+return
+
 ; カタカナひらがなキーを変換に割り当て(ミス対処)
 ;http://did2.blog64.fc2.com/blog-entry-374.html
 ; このPCだと、vkF2sc070(キーリスト記載)ではなく、vkF0sc070がカタカナひらがなキーになっている。
 vkF0sc070::vk1Csc079
+return
+
+; autohotkeyの再読み込み
+vk1Csc079 & F5::
+send ^s
+Reload
 return
