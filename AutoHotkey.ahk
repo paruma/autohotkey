@@ -1,6 +1,7 @@
 ; cheet sheet
 ; +Shift, ^Ctrl, !Alt, #Win
 ; キーリスト: http://ahkwiki.net/KeyList
+; 言語をIniとして読んでおくと、コードのハイライトが読みやすくなる。
 
 
 ;Home, End関連
@@ -17,8 +18,8 @@ else
 	send, ^{Home}
 return
 
-vk1Dsc07B & Down::
 if GetKeyState("Shift", "P") || GetKeyState("Alt", "P")
+vk1Dsc07B & Down::
     send, ^+{End}
 else
 	send, ^{End}
@@ -153,24 +154,19 @@ vk1Csc079::
 send, {vk1Csc079}
 return
 
-;変換 + A: Ctrl + Shift + Tab
+;変換 + A: Ctrl + PageUp (タブ左移動)
 vk1Csc079 & A::
-send +^{Tab}
+send ^{PgUp}
 return
 
-;変換 + D: Ctrl + Tab
+;変換 + D: Ctrl + PageDown (タブ右移動)
 vk1Csc079 & D::
-send ^{Tab}
+send ^{PgDn}
 return
 
 ;変換 + W: Ctrl + W
 vk1Csc079 & W::
 send ^{w}
-return
-
-;変換 + E: Ctrl + E
-vk1Csc079 & E::
-send ^{e}
 return
 
 ;変換 + S: Ctrl + S
@@ -181,6 +177,16 @@ return
 ;変換 + T: Ctrl + T
 vk1Csc079 & T::
 send ^{t}
+return
+
+;変換 + Q: Alt + ←
+vk1Csc079 & Q::
+send !{Left}
+return
+
+;変換 + E: Alt + →
+vk1Csc079 & E::
+send !{Right}
 return
 
 ;http://did2memo.net/2014/03/19/autohotkey-insert-text/ より
@@ -255,7 +261,7 @@ return
 vkF0sc070::vk1Csc079
 return
 
-; autohotkeyの再読み込み
+; autohotkeyの再読み込み (変換 + F5)
 vk1Csc079 & F5::
 send ^s
 Reload
