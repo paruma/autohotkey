@@ -199,16 +199,28 @@ InsertText(Content) {
     Clipboard = %cb_bk%
 }
 
+RunJS(Source){
+	send ^{l}
+	;chromeの仕様でclipboard経由でjavascript:とはかけない。
+	InsertText("javascript")
+	InsertText(": " . Source)
+	send {Enter}
+}
+
 ;変換 + C: Webのタイトル取得
 vk1Csc079 & C::
-send ^{l}
+	;"→""に変換(エスケープ文字 http://ahkwiki.net/-EscapeChar より)
+	RunJS("(function(text){ var ta = document.createElement(""textarea""); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand(""copy""); ta.parentElement.removeChild(ta); })(document.title)")
 
-;chromeの仕様でclipboard経由でjavascript:とはかけない。
-InsertText("javascript")
-;"→""に変換(エスケープ文字 http://ahkwiki.net/-EscapeChar より)
-InsertText(": (function(text){ var ta = document.createElement(""textarea""); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand(""copy""); ta.parentElement.removeChild(ta); })(document.title)")
-send {Enter}
 return
+
+;変換 + V : [Title](URL) (markdown用)
+vk1Csc079 & V::
+send ^{l}
+	;"→""に変換(エスケープ文字 http://ahkwiki.net/-EscapeChar より)
+	RunJS("(function(text){ var ta = document.createElement(""textarea""); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand(""copy""); ta.parentElement.removeChild(ta); })(""["" + document.title + ""]"" + ""("" + document.URL +"")"")")
+return
+
 
 ;変換 +  数字: Ctrl + 数字
 vk1Csc079 & 0::
