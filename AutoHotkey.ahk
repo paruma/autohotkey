@@ -273,8 +273,60 @@ return
 vkF0sc070::vk1Csc079
 return
 
+; joy-con
+Joy15::
+	send {LButton} ; 左クリック
+return
+Joy16::
+	send {RButton} ; 右クリック
+return
+Joy1::
+	send ^{PgUp} ; タブ左移動
+return
+Joy3::
+	send ^{PgDn} ; タブ右移動
+return
+
+Joy6::
+	send ^{w}
+return
+
+Joy4::
+	send #^{Right} ; 仮想ウインドウ右移動
+return
+Joy2::
+	send #^{Left} ; 仮想ウインドウ左移動
+return
+
+F13:: ;スティック→
+	send {WheelRight} ;
+return
+
+F14:: ;スティック↓
+	if GetKeyState("Joy5", "P")
+		send ^{End}
+	else 
+		send {WheelDown}
+return
+
+F15:: ;スティック←
+	send {WheelLeft} ;
+return
+
+F16:: ;スティック↑	
+	if GetKeyState("Joy5", "P")
+		send ^{Home}
+	else 
+		send {WheelUp}
+return
+
 ; autohotkeyの再読み込み (変換 + F5)
 vk1Csc079 & F5::
+send ^s
+Reload
+return
+
+Joy9::
 send ^s
 Reload
 return
