@@ -330,3 +330,18 @@ Joy9::
 send ^s
 Reload
 return
+
+; ninja2 画像生成用
+; 変換 + F12
+vk1Csc079 & F12::
+	Loop, 41{
+		send !{f}
+		Sleep, 100
+		send {i}
+		Sleep, 100
+		send {Enter}
+		Sleep, 100
+		send ^{Tab}
+		Sleep, 100
+	}
+return
