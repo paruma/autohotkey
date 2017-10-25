@@ -1,7 +1,7 @@
 ; cheet sheet
 ; +Shift, ^Ctrl, !Alt, #Win
 ; キーリスト: http://ahkwiki.net/KeyList
-; 言語をIniとして読んでおくと、コードのハイライトが読みやすくなる。
+; アクティブウインドウ: https://blog.mamansoft.net/%E5%88%9D%E5%BF%83%E8%80%85%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AEautohotkey%E8%AC%9B%E5%BA%A7-%E7%AC%AC4%E5%9B%9E/
 
 
 ;Home, End関連
@@ -154,19 +154,75 @@ vk1Csc079::
     send, {vk1Csc079}
 return
 
+; Ctrl + Alt + PgUp(PgDn)でタブが動くウインドウ
+IsCAPgToMoveTab(){
+    ; VS2017
+    IfWinActive ahk_class HwndWrapper[DefaultDomain;;5ae0f945-8e3b-4d00-b914-ca7e7f0efdce]
+    {
+        return True
+    }
+    else{
+        return False
+    }
+}
+
+; Ctrl + Tabでタブが動くウインドウ (Ctrl + PgUp(Down)でも動くものは除く)
+IsCTabToMoveTab(){
+    ; Tiled
+    IfWinActive ahk_class Qt5QWindowIcon
+    {
+        return True
+    }
+    else IfWinActive ahk_class SUMATRA_PDF_FRAME
+    {
+        return True
+    }
+    else
+    {
+        return false 
+    }
+}
+
 ;変換 + A: Ctrl + PageUp (タブ左移動)
 vk1Csc079 & A::
-    send ^{PgUp}
+    if IsCAPgToMoveTab()
+    {
+        send ^!{PgUp}
+    }
+    else if IsCTabToMoveTab()
+    {
+        send ^+{Tab}
+    }
+    else{
+        send ^{PgUp}
+    }
 return
 
 ;変換 + D: Ctrl + PageDown (タブ右移動)
 vk1Csc079 & D::
-    send ^{PgDn}
+    if IsCAPgToMoveTab()
+    {
+        send ^!{PgDn}
+    }
+    else if IsCTabToMoveTab()
+    {
+        send ^{Tab}
+    }
+    else{
+        send ^{PgDn}
+    }
 return
 
-;変換 + W: Ctrl + W
+;変換 + W: Ctrl + W (タブ削除)
 vk1Csc079 & W::
-    send ^{w}
+    ; VS2017
+    IfWinActive ahk_class HwndWrapper[DefaultDomain;;5ae0f945-8e3b-4d00-b914-ca7e7f0efdce]
+    {
+        send ^{F4}
+    }
+    else{
+        send ^{w}
+    }
 return
 
 ;変換 + S: Ctrl + S
@@ -345,3 +401,4 @@ vk1Csc079 & F12::
         Sleep, 100
     }
 return
+
