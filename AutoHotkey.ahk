@@ -213,10 +213,24 @@ vk1Csc079 & D::
     }
 return
 
-;変換 + W: Ctrl + W (タブ削除)
-vk1Csc079 & W::
+IsCtrlF4ToDeleteTab(){
     ; VS2017
     IfWinActive ahk_class HwndWrapper[DefaultDomain;;5ae0f945-8e3b-4d00-b914-ca7e7f0efdce]
+    {
+        return True
+    }
+    ; IntelliJ IDEA
+    else IfWinActive ahk_class SunAwtFrame
+    {
+        return True
+    }
+    else{
+        return False
+    }
+}
+;変換 + W: Ctrl + W (タブ削除)
+vk1Csc079 & W::
+    if IsCtrlF4ToDeleteTab()
     {
         send ^{F4}
     }
