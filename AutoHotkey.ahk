@@ -154,10 +154,19 @@ vk1Csc079::
     send, {vk1Csc079}
 return
 
+IsVS2017(){
+    IfWinActive ahk_exe devenv.exe
+    {
+        return True
+    }  else{
+        return False
+    }
+}
+
 ; Ctrl + Alt + PgUp(PgDn)でタブが動くウインドウ
 IsCAPgToMoveTab(){
     ; VS2017
-    IfWinActive ahk_class HwndWrapper[DefaultDomain;;5ae0f945-8e3b-4d00-b914-ca7e7f0efdce]
+    if IsVS2017()
     {
         return True
     }
@@ -215,7 +224,7 @@ return
 
 IsCtrlF4ToDeleteTab(){
     ; VS2017
-    IfWinActive ahk_class HwndWrapper[DefaultDomain;;5ae0f945-8e3b-4d00-b914-ca7e7f0efdce]
+    if IsVS2017()
     {
         return True
     }
